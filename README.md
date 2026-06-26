@@ -1,25 +1,28 @@
+# Natural Farmland
+A Minecraft mod for NeoForge 1.21.1 that changes farmland hydration mechanics to be more natural and realistic.
 
-Installation information
-=======
+## What it does
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+- Farmland gets hydrated only by **rain**
+- Farmland placed near water **does not** get hydrated
+- Farmland **never** turns back into dirt — not from placing blocks on top, not from drying out, not from being trampled
+- Rain gradually increases moisture level, drying happens when there is no rain and no water nearby
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+## Requirements
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+- Minecraft 1.21.1
+- NeoForge 21.1.x
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+## Installation
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+1. Download the latest `.jar` from the releases page
+2. Place it in your `mods` folder
+3. Launch the game
+
+## Compatibility
+
+Works in singleplayer and multiplayer. Server-side only installation is sufficient.
+
+## License
+
+Apache 2.0 License. See [LICENSE](LICENSE) for details.
