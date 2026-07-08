@@ -3,8 +3,12 @@ package com.hlnikniky.naturalfarmland.mixin;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FarmBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -13,7 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(FarmBlock.class)
 public class FarmBlockMixin {
 
-    // Отменяем randomTick — своя логика влажности
     @Inject(
             method = "randomTick(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V",
             at = @At("HEAD"),
@@ -33,10 +36,9 @@ public class FarmBlockMixin {
                 level.setBlock(pos, state.setValue(FarmBlock.MOISTURE, moisture - 1), 2);
             }
         }
-        ci.cancel(); // всегда отменяем — никакого turnToDirt из randomTick
+        ci.cancel();
     }
 
-    // Отменяем tick — он вызывается когда блок сверху стал непрозрачным
     @Inject(
             method = "tick(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/util/RandomSource;)V",
             at = @At("HEAD"),
@@ -44,7 +46,7 @@ public class FarmBlockMixin {
             remap = false
     )
     private void onTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
-        ci.cancel(); // блокируем turnToDirt при постановке блока сверху
+        ci.cancel();
     }
 
     // Отменяем затаптывание
@@ -68,4 +70,5 @@ public class FarmBlockMixin {
         }
         return false;
     }
+
 }
