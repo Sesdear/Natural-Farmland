@@ -4,7 +4,8 @@
   "package": "com.hlnikniky.naturalfarmland.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "FarmBlockMixin"
+    "FarmBlockMixin",
+    "DisableHoeTillMixin"
   ],
   "client": [],
   "injectors": {
