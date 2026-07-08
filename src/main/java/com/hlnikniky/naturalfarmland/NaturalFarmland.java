@@ -1,5 +1,11 @@
 package com.hlnikniky.naturalfarmland;
 
+import com.hlnikniky.naturalfarmland.block.custom.BigFarmlandBlock;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -25,6 +31,15 @@ public class NaturalFarmland {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
+
+    public static final DeferredBlock<Block> BIG_FARMLAND =
+            BLOCKS.register("big_farmland",
+                    () -> new BigFarmlandBlock(BlockBehaviour.Properties.of()
+                            .strength(0.6F)
+                            .noOcclusion()));
+
+    public static final DeferredItem<BlockItem> BIG_FARMLAND_ITEM =
+            ITEMS.registerSimpleBlockItem("big_farmland", BIG_FARMLAND);
 
 
 
